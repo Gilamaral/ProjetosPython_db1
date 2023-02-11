@@ -1,3 +1,3 @@
 print('Olá, mundo!')
-msg = 'olá mundo!'
+msg = 'Olá mundo!'
 print(f'{msg:-^20}')

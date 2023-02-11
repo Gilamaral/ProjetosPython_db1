@@ -1,0 +1,6 @@
+sites importantes
+
+Fun��es de controle do teclado modulo(pyautogui)
+https://pyautogui.readthedocs.io/en/latest/keyboard.html
+
+
