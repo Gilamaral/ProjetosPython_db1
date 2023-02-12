@@ -12,6 +12,7 @@ while True:
     print('processando...')
     sleep(3)
     print ('Meu numero é... {}'.format(computador))
+    
     if jogador == computador:
         print('Parabens vc conseguiu me vencer!!')
     else:
