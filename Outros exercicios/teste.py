@@ -1,4 +1,3 @@
-from datetime import date
-data = date.today()
-
-print(data)
+layout = [[sg.T('Source Folder')],
+              [sg.In(key='input')],
+              [sg.FolderBrowse(target='input'), sg.OK()]]
