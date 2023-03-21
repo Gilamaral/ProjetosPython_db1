@@ -22,3 +22,4 @@ print(tabela)
 #atualizar resultado
 tabela.to_excel('C:\ProjetosPython\ProjetosPython_db1\.idea\BD_Excel\BD_pandas_python.xlsx')
 
+tabela.append.to_excel
