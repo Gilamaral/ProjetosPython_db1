@@ -80,30 +80,25 @@ def Sel2():
 
     import requests as rq
     from bs4 import BeautifulSoup
-    import lxml
 
 
     headers = {'user-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"}
 
-    site = rq.get('https://www.transvias.com.br/sitemaps/sitemap_transportadoras.xml', headers=headers)
+    site = rq.get('https://www.guiadotransporte.com.br/transportadoras/maringa-pr?page=1', headers=headers)
     status = site.status_code
 
     if status == 200:
         print('ok')
 
-        soup = BeautifulSoup(site.content, 'xml.parser')
-        trp = soup.find_all('h3', class_='product-description')
-        print(trp)
+        soup = BeautifulSoup(site.content, 'html.parser')
+        trp = soup.find_all('div', class_='row')
+
+        email = trp.find_all('a', class_='email')
+
+        print(email)
 
     else:
         print('não está conectado ao site')
-
-Sel2()
-
-
- 
-
-
 
 
 def CotacaoDolar():
@@ -120,3 +115,75 @@ def CotacaoDolar():
 
 
     print(cotacao)
+
+
+def SelGpt():
+
+    import requests
+    from bs4 import BeautifulSoup
+
+    url = 'https://www.guiadotransporte.com.br/transportadoras/maringa-pr?page=1'
+
+    # Faz a requisição HTTP para obter o HTML da página
+    response = requests.get(url)
+
+    # Analisa o HTML usando a biblioteca BeautifulSoup
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Procura por todos os links com a classe "mail-link"
+    mail_links = soup.find_all('a', class_='email')
+
+    # Extrai o e-mail de cada link encontrado
+    emails = [link['href'].replace('mailto:', '') for link in mail_links]
+
+    # Imprime os e-mails encontrados
+    print(emails)
+
+
+def SelGpt1():
+
+    import requests
+    from bs4 import BeautifulSoup
+
+    url = 'https://www.guiadotransporte.com.br/transportadoras/maringa-pr?page=1'
+
+    # Faz a requisição HTTP para obter o HTML da página
+    response = requests.get(url)
+
+    # Analisa o HTML usando a biblioteca BeautifulSoup
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Procura por todos os links com a classe "mail-link"
+    mail_links = soup.find_all('a', class_='email')
+
+    # Extrai o e-mail de cada link encontrado
+    emails = [link['href'].replace('mailto:', '') for link in mail_links]
+
+    # Imprime os e-mails encontrados
+    print(emails)
+
+
+def SelGpt2():
+
+    import requests
+    from bs4 import BeautifulSoup
+
+    url = 'https://www.guiadotransporte.com.br/transportadoras/maringa-pr?page=6'
+
+    # Faz a requisição HTTP para obter o HTML da página
+    response = requests.get(url)
+
+    # Analisa o HTML usando a biblioteca BeautifulSoup
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Procura por todos os links com a classe "whatsapp-link"
+    whatsapp_links = soup.find_all('a', target='_blank')
+
+    # Extrai o número de WhatsApp de cada link encontrado
+    numbers = [link['href'].replace('https://api.whatsapp.com/send?phone=', '') for link in whatsapp_links]
+
+    # Imprime os números de WhatsApp encontrados
+    print(numbers)
+
+
+SelGpt2()
