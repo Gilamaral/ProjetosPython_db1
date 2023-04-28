@@ -84,21 +84,25 @@ def Sel2():
 
     headers = {'user-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"}
 
-    site = rq.get('https://www.guiadotransporte.com.br/transportadoras/maringa-pr?page=1', headers=headers)
+    site = rq.get('https://www.google.com/search?rlz=1C1BNSD_pt-BRBR1044BR1044&tbs=lf:1,lf_ui:2&tbm=lcl&sxsrf=APwXEdfLBO3z8XvbV3P3XbVuMt0EyNo4mA:1682449281577&q=transportadoras+em+bauru&rflfq=1&num=10&sa=X&ved=2ahUKEwigt5_-28X-AhXjGbkGHdQcBQkQjGp6BAhYEAI&biw=729&bih=665&dpr=1#rlfi=hd:;si:;mv:[[-22.2744283,-48.9680118],[-22.3623384,-49.127463999999996]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:2', headers=headers)
     status = site.status_code
 
     if status == 200:
         print('ok')
 
         soup = BeautifulSoup(site.content, 'html.parser')
-        trp = soup.find_all('div', class_='row')
+        trp = soup.find_all('div', class_='rllt__details')
 
-        email = trp.find_all('a', class_='email')
+        fone = soup.find_all('span', class_='RDApEe YrbPuc')
 
-        print(email)
+        print(fone)
 
     else:
         print('não está conectado ao site')
+
+
+Sel2()
+
 
 
 def CotacaoDolar():
@@ -186,4 +190,3 @@ def SelGpt2():
     print(numbers)
 
 
-SelGpt2()
